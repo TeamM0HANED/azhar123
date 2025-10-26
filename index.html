@@ -1,0 +1,147 @@
+<!-- index.html: الملف الرئيسي لعرض واجهة نظام الاستعلام عن نتيجة الطالب -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نظام الاستعلام عن نتيجة الطالب – اسوان النموذجي الإعدادي الثانوي بنين</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="header-meta">
+        <div class="datetime" aria-live="polite">
+          <span id="currentDate" class="date-part">-- -- ----</span>
+          <span id="currentTime" class="time-part">--:--:--</span>
+        </div>
+        <a class="top-link" href="#topStudentsSection">
+          <span class="icon"><img src="A.jfif" alt="" aria-hidden="true" /></span>
+          أوائل الطلاب
+        </a>
+      </div>
+      <div
+        id="connectionStatus"
+        class="connection-status hidden"
+        role="status"
+        aria-live="assertive"
+      ></div>
+      <div class="branding">
+        <div class="logo-mark">
+          <img
+            src="A.jfif"
+            alt="شعار اسوان النموذجي الإعدادي الثانوي بنين"
+            decoding="async"
+          />
+        </div>
+        <div>
+          <p class="school-type">اسوان النموذجي الإعدادي الثانوي بنين</p>
+          <h1>نظام الاستعلام عن نتيجة الطالب</h1>
+        </div>
+      </div>
+      <p class="intro-text">
+        أدخل رقم الجلوس الخاص بك لمعرفة نتيجة الطالب بسرعة وسهولة، وتعرّف كذلك
+        على أوائل المدرسة لهذا العام.
+      </p>
+    </header>
+
+    <main>
+      <section class="search-section" aria-labelledby="searchTitle">
+        <h2 id="searchTitle">بحث برقم الجلوس</h2>
+        <form id="searchForm" class="search-form" novalidate>
+          <label class="input-label" for="examNumber">رقم الجلوس</label>
+          <div class="input-group">
+            <input
+              type="text"
+              id="examNumber"
+              name="examNumber"
+              placeholder="أدخل رقم الجلوس"
+              inputmode="numeric"
+              autocomplete="off"
+              required
+              aria-required="true"
+            />
+            <button type="submit" class="primary-button">عرض البيانات</button>
+          </div>
+        </form>
+        <p id="feedback" role="alert" class="feedback" aria-live="polite"></p>
+      </section>
+
+      <section
+        id="studentCard"
+        class="student-card hidden"
+        aria-labelledby="studentName"
+      >
+        <div class="card-header">
+          <div class="card-icon" aria-hidden="true">🎓</div>
+          <div class="card-identity">
+            <h2 id="studentName" class="student-name">اسم الطالب</h2>
+            <p id="studentGrade" class="student-grade">الصف الدراسي</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="info-row">
+            <span class="label">رقم الجلوس:</span>
+            <span id="studentExamNumber" class="value"></span>
+          </div>
+          <div class="info-row">
+            <span class="label">المجموع الكلي:</span>
+            <span id="studentTotal" class="value"></span>
+          </div>
+          <div class="info-row">
+            <span class="label">التقدير:</span>
+            <span id="studentEvaluation" class="value"></span>
+          </div>
+          <div class="info-row">
+            <span class="label">الحالة:</span>
+            <span id="studentStatus" class="value status"></span>
+          </div>
+          <div class="info-row">
+            <span class="label">القسم:</span>
+            <span id="studentDepartment" class="value"></span>
+          </div>
+        </div>
+        <div class="card-actions">
+          <button type="button" id="printButton" class="secondary-button">
+            طباعة النتيجة
+          </button>
+        </div>
+        <div class="card-footer">
+          <span class="label">تاريخ الطباعة:</span>
+          <span id="printDate" class="value"></span>
+        </div>
+      </section>
+
+      <section
+        id="topStudentsSection"
+        class="top-students-section"
+        aria-labelledby="topStudentsTitle"
+      >
+        <div class="section-heading">
+          <h2 id="topStudentsTitle">
+            <img src="A.jfif" alt="" aria-hidden="true" />
+            أوائل الطلاب
+          </h2>
+          <p>أعلى عشرة طلاب وفقًا لأعلى الدرجات لهذا العام الدراسي.</p>
+        </div>
+        <div id="topStudentsGrid" class="top-students-grid" role="list"></div>
+        <p id="topStudentsFallback" class="top-fallback hidden">
+          لا توجد بيانات متاحة لأوائل الطلاب حاليًا.
+        </p>
+      </section>
+    </main>
+
+    <footer class="main-footer">
+      <p>
+        © <span id="currentYear"></span> مدرسة محمد متولي الشعراوي النموذجية. جميع
+        الحقوق محفوظة.
+      </p>
+    </footer>
+  </body>
+</html>
